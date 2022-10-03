@@ -5,7 +5,11 @@ const {
   updateUser,
 } = require('../controllers/user');
 
+const {
+  updateUserValidity,
+} = require('../middlewares/validity');
+
 userRouter.get('/me', getUser);
-userRouter.patch('/me', updateUser);
+userRouter.patch('/me', updateUserValidity, updateUser);
 
 module.exports = userRouter;

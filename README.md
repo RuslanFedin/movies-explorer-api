@@ -14,4 +14,4 @@
 - jsonwebtoken
 - mongoose
 
-## Проект доступен по [ссылке](movies-explorer.api.nomorepartiesxyz.ru)
+## Проект доступен по [ссылке](https://movies-explorer.api.nomorepartiesxyz.ru/)

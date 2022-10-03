@@ -17,22 +17,16 @@ const getUser = (req, res, next) => {
       throw new NotFound('Пользователь не найден');
     })
     .then((user) => res.send({ user }))
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        next(new BadRequest('Неверный запрос'));
-      } else {
-        next(err);
-      }
-    });
+    .catch(next);
 };
 
 const updateUser = (req, res, next) => {
-  const { name, about } = req.body;
+  const { name, email } = req.body;
   User.findByIdAndUpdate(
     req.user._id,
     {
       name,
-      about,
+      email,
     },
     {
       new: true,
@@ -47,8 +41,8 @@ const updateUser = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequest('Введены некорректные данные'));
-      } else if (err.name === 'NotFound') {
-        next(new NotFound('Пользователь не найден'));
+      } else if (err.code === 11000) {
+        next(new Conflict('email занят другим пользователем'));
       } else {
         next(err);
       }
