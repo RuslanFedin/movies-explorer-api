@@ -40,7 +40,7 @@ const createMovieValidity = celebrate({
     image: Joi.string().required().custom(ulrValidity),
     trailerLink: Joi.string().required().custom(ulrValidity),
     thumbnail: Joi.string().required().custom(ulrValidity),
-    id: Joi.number().required(),
+    movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
   }),
@@ -48,7 +48,7 @@ const createMovieValidity = celebrate({
 
 const removeMovieValidity = celebrate({
   params: Joi.object().keys({
-    id: Joi.string().required().hex().length(24),
+    movieId: Joi.string().required().length(24).hex(),
   }),
 });
 

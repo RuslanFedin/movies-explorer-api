@@ -19,7 +19,7 @@ const saveMovie = (req, res, next) => {
     image,
     trailerLink,
     thumbnail,
-    id,
+    movieId,
     nameRU,
     nameEN,
   } = req.body;
@@ -34,7 +34,7 @@ const saveMovie = (req, res, next) => {
     trailerLink,
     thumbnail,
     owner: req.user._id,
-    id,
+    movieId,
     nameRU,
     nameEN,
   })
@@ -49,7 +49,7 @@ const saveMovie = (req, res, next) => {
 };
 
 const removeMovie = (req, res, next) => {
-  Movie.findById(req.params.id)
+  Movie.findById(req.params.movieId)
     .orFail(() => {
       throw new NotFound('Фильм не найден.');
     })
